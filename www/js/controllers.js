@@ -67,7 +67,6 @@ angular.module('starter.controllers', [])
               $scope.data.selectedContacts.push(contact);
               console.log("Selected contacts=");
               console.log($scope.data.selectedContacts);
-
           },
           function(failure) {
               console.log("Bummer.  Failed to pick a contact");
@@ -81,7 +80,6 @@ angular.module('starter.controllers', [])
               $scope.data.selectedContacts.push(contact);
               console.log("Selected contacts=");
               console.log($scope.data.selectedContacts);
-
           },
           function(failure) {
               console.log("Bummer.  Failed to take camera");
@@ -102,21 +100,18 @@ angular.module('starter.controllers', [])
           }
       );
     }
-    
-    
-
 }])
 
-.controller('ExampleController', ['$scope', '$state', function($scope, $state) {
+.controller('VoteFormController', ['$scope', '$state', function($scope, $state) {
   $scope.askForVote = function(oneChat) {
-      chat = {};
-      chat['people'] = $scope.data.selectedContacts;
-      chat['title'] = oneChat.comment;
-      chat['image'] = "img/cover.jpg";
-      chat['id'] = $scope.chatlist.length;
-      $scope.chatlist.push(chat);
-      $state.go('app.chat', {chatId:chat['id']});
-    }
+    chat = {};
+    chat['people'] = $scope.data.selectedContacts;
+    chat['title'] = oneChat.comment;
+    chat['image'] = "img/cover.jpg";
+    chat['id'] = $scope.chatlist.length;
+    $scope.chatlist.push(chat);
+    $state.go('app.chat', {chatId:chat['id']});
+  };
 }])
 
 .controller('ChatlistCtrl', function($scope) {

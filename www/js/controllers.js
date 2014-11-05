@@ -33,14 +33,26 @@ angular.module('starter.controllers', [])
   };
   
   $scope.chatlist = [
-    { title: "Do you like this?", people: ['Nick Larson'], id: 0, image: "img/cover.jpg" },
-    { title: "What do you think of it?", people: ['Nick Larson', 'Sophie', 'Paul'], id: 1, image: "img/cover.jpg" },
-    { title: "Should I get it?", people: ['Erik Archer', 'Evy'], id: 2, image: "img/cover.jpg" },
-    { title: "Buy or not buy?", people: ['Glenn Liao'], id: 3, image: "img/cover.jpg" },
-    { title: "I want this", people: ['Alex Linda', 'Alain'], id: 4, image: "img/cover.jpg" },
-    { title: "Like it?", people: ['Reese'], id: 5, image: "img/cover.jpg" },
-    { title: "Yum?", people: ['Sharon'], id: 6, image: "img/cover.jpg" }
+    { title: "Do you like this?", people: [{'displayName':'Nick Larson'}], id: 0, image: "img/cover.jpg" },
+    { title: "What do you think of it?", people: [{'displayName':'Nick Larson'}, {'displayName':'Sophie'}, {'displayName':'Paul'}], id: 1, image: "img/cover.jpg" },
+    { title: "Should I get it?", people: [{'displayName':'Erik Archer'}, {'displayName':'Evy'}], id: 2, image: "img/cover.jpg" },
+    { title: "Buy or not buy?", people: [{'displayName':'Glenn Liao'}], id: 3, image: "img/cover.jpg" },
+    { title: "I want this", people: [{'displayName':'Alex Linda'}, {'displayName':'Alain'}], id: 4, image: "img/cover.jpg" },
+    { title: "Like it?", people: [{'displayName':'Reese'}], id: 5, image: "img/cover.jpg" },
+    { title: "Yum?", people: [{'displayName':'Sharon'}], id: 6, image: "img/cover.jpg" }
   ];
+  
+  $scope.showContacts = function(contacts) {
+    var contactsDisplay = "";
+    for (var prop in contacts) {
+      if (prop > 0) {
+        contactsDisplay += ", ";
+      }
+      contactsDisplay += contacts[prop]['displayName'];
+    }
+    console.log("contactsDisplay=" + contactsDisplay);
+    return contactsDisplay;
+  };
 })
 
 .controller('HomeCtrl', ['$scope', 'ContactsService', 'Camera', 

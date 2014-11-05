@@ -1,11 +1,13 @@
-<ion-view title="Chatlist">
+<ion-view title="Popick">
   <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <a nav-clear class="button button-icon icon ion-fireball" href="#/app/home"></a>
   </ion-nav-buttons>
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="chat in chatlist" href="#/app/chat/{{chat.id}}">
-        {{chat.title}}
+      <ion-item ng-repeat="chat in chatlist" class="item-thumbnail-left" href="#/app/chat/{{chat.id}}">
+        <img src="{{chat.image}}">
+        <h2>{{chat.title}}</h2>
+        <p><span ng-repeat="person in chat.people">{{person}}</span></p>
       </ion-item>
     </ion-list>
   </ion-content>

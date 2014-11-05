@@ -85,7 +85,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-    .state('app.chatlists', {
+    .state('app.chatlist', {
       url: "/chatlist",
       views: {
         'menuContent' :{
@@ -95,8 +95,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-    .state('app.single', {
-      url: "/chat/:chattId",
+    .state('app.chat', {
+      url: "/chat/:chatId",
       views: {
         'menuContent' :{
           templateUrl: "templates/chat.html",

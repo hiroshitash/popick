@@ -1,39 +1,48 @@
-<ion-view title="Home">
+<ion-view title="Popick">
   <ion-nav-buttons side="left">
     <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right">
-    <a menu-toggle="right"class="button button-icon icon ion-chatbubble" href="#/app/chatlist"></a>
+    <a nav-clear menu-toggle="right"class="button button-icon icon ion-chatbubbles" href="#/app/chatlist"></a>
   </ion-nav-buttons>
+  
   <ion-content class="has-header">
-    <div class="list card">
-
-      <div class="item item-divider item-button-right">
-        <h2>To:</h2>
-        <div ng-repeat="contact in data.selectedContacts">
-          <h2>{{contact.displayName}}</h2>
+    <div ng-controller="ExampleController">
+    <form name="chatForm" ng-submit="askForVote(oneChat)">
+      <div class="list card">
+  
+        <div class="item item-divider item-button-right">
+          <h2>To:</h2>
+          <div ng-repeat="contact in data.selectedContacts">
+            <h2>{{contact.displayName}}</h2>
+          </div>
+          <button class="button" ng-click="pickContact()">
+            <i class="icon ion-person-add"></i>
+          </button>
         </div>
-        <button class="button" ng-click="pickContact()">
-          <i class="icon ion-person-add"></i>
-        </button>
-      </div>
-    
-      <div class="item item-image">
-        <button class="button" ng-click="takeCamera()">
-          <i class="icon ion-camera"></i>
-        </button>
-        <button class="button" ng-click="pickImage()">
-          <i class="icon ion-image"></i>
-        </button>
+      
+        <div class="item item-body" style="text-align: center; padding-top: 50px; height: 200px">
+          <!--img src="img/cover.jpg"-->
+          <button class="button button-large" ng-click="takeCamera()">
+            <i class="icon ion-camera"></i>
+          </button>
+          <button class="button button-large" ng-click="pickImage()">
+            <i class="icon ion-image"></i>
+          </button>
+        </div>
         
-        <img src="cover.jpg">
+        <div class="item assertive">
+          <label class="item item-input">
+            <textarea ng-model="oneChat.comment" placeholder="Add comment or question"></textarea>
+          </label>
+        </div>
+  
+        <button class="button button-full button-positive" type="submit">
+          Ask for vote!
+        </button>
+  
       </div>
-    
-      <a class="item item-icon-left assertive" href="#">
-        <i class="icon ion-music-note"></i>
-        Start listening
-      </a>
-    
+    </form>
     </div>
   </ion-content>
 </ion-view>

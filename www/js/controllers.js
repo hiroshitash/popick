@@ -31,21 +31,20 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
-})
-
-.controller('ChatlistCtrl', function($scope) {
+  
   $scope.chatlist = [
-    { title: 'Nick Larson, Sophie, Paul..', id: 1 },
-    { title: 'Erik Archer, ', id: 2 },
-    { title: 'Glenn Liao', id: 3 },
-    { title: 'Alex Linda, Alain', id: 4 },
-    { title: 'Reese', id: 5 },
-    { title: 'Sharon', id: 6 }
+    { title: "Do you like this?", people: ['Nick Larson'], id: 0, image: "img/cover.jpg" },
+    { title: "What do you think of it?", people: ['Nick Larson', 'Sophie', 'Paul'], id: 1, image: "img/cover.jpg" },
+    { title: "Should I get it?", people: ['Erik Archer', 'Evy'], id: 2, image: "img/cover.jpg" },
+    { title: "Buy or not buy?", people: ['Glenn Liao'], id: 3, image: "img/cover.jpg" },
+    { title: "I want this", people: ['Alex Linda', 'Alain'], id: 4, image: "img/cover.jpg" },
+    { title: "Like it?", people: ['Reese'], id: 5, image: "img/cover.jpg" },
+    { title: "Yum?", people: ['Sharon'], id: 6, image: "img/cover.jpg" }
   ];
 })
 
 .controller('HomeCtrl', ['$scope', 'ContactsService', 'Camera', 
-  function($scope, ContactsService) {
+  function($scope, ContactsService, Camera) {
     $scope.data = {
             selectedContacts : []
     };
@@ -91,8 +90,28 @@ angular.module('starter.controllers', [])
           }
       );
     }
+    
+    
 
 }])
 
-.controller('ChatCtrl', function($scope, $stateParams) {
-});
+.controller('ExampleController', ['$scope', '$state', function($scope, $state) {
+  $scope.askForVote = function(oneChat) {
+      chat = {};
+      chat['people'] = $scope.data.selectedContacts;
+      chat['title'] = oneChat.comment;
+      chat['image'] = "img/cover.jpg";
+      chat['id'] = $scope.chatlist.length;
+      $scope.chatlist.push(chat);
+      $state.go('app.chat', {chatId:chat['id']});
+    }
+}])
+
+.controller('ChatlistCtrl', function($scope) {
+})
+
+.controller('ChatCtrl', ['$scope', '$stateParams',
+  function($scope, $stateParams) {
+    $scope.chat = $scope.chatlist[$stateParams.chatId];  
+  }
+]);

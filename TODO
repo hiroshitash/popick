@@ -1,0 +1,2 @@
+- Move pickContact from HomeCtrl to AppCtrl
+- Add validation to voteForm

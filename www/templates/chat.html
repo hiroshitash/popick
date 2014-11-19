@@ -1,7 +1,6 @@
 <ion-view title="Popick">
   <ion-content class="has-header">
     <div class="list card">
-
       <div class="item item-divider item-button-right">
         <div>
           <h2>{{showContacts(chat.people)}}</h2>
@@ -18,5 +17,21 @@
       <div class="item item-text-wrap">
           {{chat.title}}
       </div>
+
+      <div ng-repeat="comment in chat.comments" class="item item-text-wrap">
+        <h2>{{comment.comment}} by {{showContacts([comment.contact])}}</h2>
+      </div>
+    </div>
   </ion-content>
+  <ion-footer-bar>
+    <div class="bar bar-footer item-input-inset footer-item-input-insert">
+      <label class="item-input-wrapper">
+        <input ng-model="comment" type="text" placeholder="Comment">
+      </label>
+      <input type="hidden" ng-model="comment.contact" value=-1>
+      <button on-tap="sendComment(comment)" class="button button-clear">
+        Send
+      </button>
+    </div>
+  </ion-footer-bar>
 </ion-view>

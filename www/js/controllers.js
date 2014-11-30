@@ -61,7 +61,7 @@ angular.module('starter.controllers', [])
         contactsDisplay += ", ";
       }
       var contactId = contacts[prop];
-      if ($scope.contactList[contactId] == -1) {
+      if (parseInt(contactId) == -1) {
         contactsDisplay += "me";
       } else {
         contactsDisplay += $scope.contactList[contactId]['displayName'];
@@ -126,6 +126,7 @@ angular.module('starter.controllers', [])
     chat['title'] = oneChat.comment;
     chat['image'] = "img/cover.jpg";
     chat['id'] = $scope.chatlist.length;
+    chat['comments'] = [];
     $scope.chatlist.push(chat);
     $state.go('app.chat', {chatId:chat['id']});
   };
@@ -140,6 +141,7 @@ angular.module('starter.controllers', [])
     
     $scope.sendComment = function(comment) {
       console.log("comment sent: " + comment);
+      //$scope.chat.comments.push({comment:comment,contact:-1});
       $scope.chat.comments.push({comment:comment,contact:-1});
       /*
       $ionicPopup.alert({

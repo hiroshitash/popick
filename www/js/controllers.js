@@ -1,6 +1,6 @@
-angular.module('starter.controllers', [])
+angular.module('popick.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, ChatListService, ContactService) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -31,7 +31,7 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
-  
+  /*
   $scope.chatlist = [
     { title: "Do you like this?", buyer: [1], approvers: [0], id: 0, image: "img/cover.jpg",
       comments:[{comment:"comment1", contact:0},{comment:"comment2",contact:0}]},
@@ -48,11 +48,15 @@ angular.module('starter.controllers', [])
     { title: "Yum?", buyer: [9], approvers: [7], id: 6, image: "img/cover.jpg",
       comments:[{comment:"comment1", contact:-1},{comment:"comment2",contact:7}]}
   ];
-  
+
   $scope.contactList = [{displayName:"Nick larson"}, {displayName:"Erik Archer"}, {displayName:"Sophie"},
                         {displayName:"Glenn Liao"}, {displayName:"Alex Linda"}, {displayName:"Evy"},
                         {displayName:"Reese"}, {displayName:"Sharon"}, {displayName:"Paul"},
                         {displayName:"XX2"}, {displayName:"XX3"}, {displayName:"Alain"}];
+  */
+  $scope.chatlist = ChatListService.get();
+  
+  $scope.contactList = ContactService.get();
   
   $scope.showContacts = function(contacts) {
     var contactsDisplay = "";
@@ -72,15 +76,15 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('HomeCtrl', ['$scope', 'ContactsService', 'Camera', 
-  function($scope, ContactsService, Camera) {
+.controller('HomeCtrl', ['$scope', 'NativeContactService', 'Camera', 
+  function($scope, NativeContactService, Camera) {
     $scope.data = {
       selectedBuyer : [],
       selectedApprovers: []
     };
     
     $scope.pickBuyer = function() {
-      ContactsService.pickContact().then(
+      NativeContactService.pickContact().then(
           function(contact) {
               $scope.data.selectedBuyer.push(contact);
               console.log("Selected contacts=");
@@ -93,7 +97,7 @@ angular.module('starter.controllers', [])
     }
     
     $scope.pickApprovers = function() {
-      ContactsService.pickContact().then(
+      NativeContactService.pickContact().then(
           function(contact) {
               $scope.data.selectedApprovers.push(contact);
               console.log("Selected contacts=");
@@ -106,7 +110,7 @@ angular.module('starter.controllers', [])
     }
     
     $scope.takeCamera = function() {
-      ContactsService.pickContact().then(
+      NativeContactService.pickContact().then(
           function(contact) {
               $scope.data.selectedBuyer.push(contact);
               console.log("Selected contacts=");
@@ -119,7 +123,7 @@ angular.module('starter.controllers', [])
     }
     
     $scope.pickImage = function() {
-      ContactsService.pickContact().then(
+      NativeContactService.pickContact().then(
           function(contact) {
               $scope.data.selectedBuyer.push(contact);
               console.log("Selected contacts=");

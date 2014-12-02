@@ -3,7 +3,10 @@
     <div class="list card">
       <div class="item item-divider item-button-right">
         <div>
-          <h2>{{showContacts(chat.people)}}</h2>
+          <h2>Buyer: {{showContacts(chat.buyer)}}</h2>
+        </div>
+        <div>
+          <h2>Approvers: {{showContacts(chat.approvers)}}</h2>
         </div>
         <button class="button" ng-click="pickContact()">
           <i class="icon ion-person-add"></i>

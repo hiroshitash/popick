@@ -33,19 +33,19 @@ angular.module('starter.controllers', [])
   };
   
   $scope.chatlist = [
-    { title: "Do you like this?", people: [0], id: 0, image: "img/cover.jpg",
+    { title: "Do you like this?", buyer: [1], approvers: [0], id: 0, image: "img/cover.jpg",
       comments:[{comment:"comment1", contact:0},{comment:"comment2",contact:0}]},
-    { title: "What do you think of it?", people: [0, 2, 8],
+    { title: "What do you think of it?", buyer: [1], approvers: [0, 2, 8],
       id: 1, image: "img/cover.jpg", comments:[{comment:"comment1", contact:8},{comment:"comment2",contact:2}] },
-    { title: "Should I get it?", people: [1, 5], id: 2, image: "img/cover.jpg",
+    { title: "Should I get it?", buyer: [0], approvers: [1, 5], id: 2, image: "img/cover.jpg",
       comments:[{comment:"comment1", contact:1},{comment:"comment2",contact:5}]},
-    { title: "Buy or not buy?", people: [3], id: 3, image: "img/cover.jpg",
+    { title: "Buy or not buy?", buyer: [2], approvers: [3], id: 3, image: "img/cover.jpg",
       comments:[{comment:"comment1", contact:3},{comment:"comment2",contact:-1}]},
-    { title: "I want this", people: [4, 11], id: 4, image: "img/cover.jpg",
+    { title: "I want this", buyer: [6], approvers: [4, 11], id: 4, image: "img/cover.jpg",
       comments:[{comment:"comment1", contact:4},{comment:"comment2",contact:11}]},
-    { title: "Like it?", people: [6], id: 5, image: "img/cover.jpg",
+    { title: "Like it?", buyer: [8], approvers: [6], id: 5, image: "img/cover.jpg",
       comments:[{comment:"comment1", contact:-1},{comment:"comment2",contact:6}]},
-    { title: "Yum?", people: [7], id: 6, image: "img/cover.jpg",
+    { title: "Yum?", buyer: [9], approvers: [7], id: 6, image: "img/cover.jpg",
       comments:[{comment:"comment1", contact:-1},{comment:"comment2",contact:7}]}
   ];
   
@@ -75,18 +75,32 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', ['$scope', 'ContactsService', 'Camera', 
   function($scope, ContactsService, Camera) {
     $scope.data = {
-            selectedContacts : []
+      selectedBuyer : [],
+      selectedApprovers: []
     };
     
-    $scope.pickContact = function() {
+    $scope.pickBuyer = function() {
       ContactsService.pickContact().then(
           function(contact) {
-              $scope.data.selectedContacts.push(contact);
+              $scope.data.selectedBuyer.push(contact);
               console.log("Selected contacts=");
-              console.log($scope.data.selectedContacts);
+              console.log($scope.data.selectedBuyer);
           },
           function(failure) {
-              console.log("Bummer.  Failed to pick a contact");
+              console.log("Bummer.  Failed to pick a buyer");
+          }
+      );
+    }
+    
+    $scope.pickApprovers = function() {
+      ContactsService.pickContact().then(
+          function(contact) {
+              $scope.data.selectedApprovers.push(contact);
+              console.log("Selected contacts=");
+              console.log($scope.data.selectedApprovers);
+          },
+          function(failure) {
+              console.log("Bummer.  Failed to pick approvers");
           }
       );
     }
@@ -94,9 +108,9 @@ angular.module('starter.controllers', [])
     $scope.takeCamera = function() {
       ContactsService.pickContact().then(
           function(contact) {
-              $scope.data.selectedContacts.push(contact);
+              $scope.data.selectedBuyer.push(contact);
               console.log("Selected contacts=");
-              console.log($scope.data.selectedContacts);
+              console.log($scope.data.selectedBuyer);
           },
           function(failure) {
               console.log("Bummer.  Failed to take camera");
@@ -107,9 +121,9 @@ angular.module('starter.controllers', [])
     $scope.pickImage = function() {
       ContactsService.pickContact().then(
           function(contact) {
-              $scope.data.selectedContacts.push(contact);
+              $scope.data.selectedBuyer.push(contact);
               console.log("Selected contacts=");
-              console.log($scope.data.selectedContacts);
+              console.log($scope.data.selectedBuyer);
 
           },
           function(failure) {
@@ -122,7 +136,7 @@ angular.module('starter.controllers', [])
 .controller('VoteFormController', ['$scope', '$state', function($scope, $state) {
   $scope.askForVote = function(oneChat) {
     chat = {};
-    chat['people'] = $scope.data.selectedContacts;
+    chat['approvers'] = $scope.data.selectedBuyer;
     chat['title'] = oneChat.comment;
     chat['image'] = "img/cover.jpg";
     chat['id'] = $scope.chatlist.length;

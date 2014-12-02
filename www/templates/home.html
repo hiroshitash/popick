@@ -13,9 +13,17 @@
   
         <div class="item item-divider item-button-right">
           <div>
-            <h2>To: {{showContacts(data.selectedContacts)}}</h2>
+            <h2>Buyer: {{showContacts(data.selectedBuyer)}}</h2>
           </div>
-          <button class="button" ng-click="pickContact()">
+          <button class="button" ng-click="pickBuyer()">
+            <i class="icon ion-person-add"></i>
+          </button>
+        </div>
+        <div class="item item-divider item-button-right">
+          <div>
+            <h2>Approvers: {{showContacts(data.selectedApprovers)}}</h2>
+          </div>
+          <button class="button" ng-click="pickApprovers()">
             <i class="icon ion-person-add"></i>
           </button>
         </div>
@@ -32,12 +40,12 @@
         
         <div class="item assertive">
           <label class="item item-input">
-            <textarea ng-model="oneChat.comment" placeholder="Add comment or question"></textarea>
+            <textarea ng-model="oneChat.comment" placeholder="Add note or question"></textarea>
           </label>
         </div>
   
         <button class="button button-full button-positive" type="submit">
-          Ask for vote!
+          Initiate purchase vote!
         </button>
   
       </div>

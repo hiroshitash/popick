@@ -5,7 +5,7 @@ angular.module('popick.controllers', [])
   $scope.loginData = {};
 
   // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
+  $scope.login = function() {
     console.log('Doing login', $scope.loginData);
 
     // Simulate a login delay. Remove this and replace with your login
@@ -14,6 +14,17 @@ angular.module('popick.controllers', [])
       //$scope.closeLogin();
       $state.go('app.home');
     }, 1000);
+  };
+
+  $scope.logout = function() {
+    console.log('Doing logout', $scope.loginData);
+
+    // Simulate a login delay. Remove this and replace with your login
+    // code if using a login system
+    $timeout(function() {
+      //$scope.closeLogin();
+      $state.go('app.login');
+    }, 200);
   };
   
   $scope.chatlist = ChatListService.get();

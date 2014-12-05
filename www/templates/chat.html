@@ -13,19 +13,21 @@
         </button>
       </div>
     
-      <div class="item item-body" style="text-align: center; height: 200px">
-        <img class="coverPic" src="img/cover.jpg">
+      <div class="item item-body" style="text-align: center; height: 1000px">
+        <img class="full-image" src="img/cover.jpg">
       </div>
       
       <div class="item item-text-wrap">
           {{chat.title}}
-      </div>
-
-      <div ng-repeat="comment in chat.comments" class="item item-text-wrap">
-        <h2>{{comment.comment}} by {{showContacts([comment.contact])}}</h2>
-      </div>
+     </div>
     </div>
+    <div ng-repeat="comment in chat.comments" class="item item-avatar">
+    <img src="img/avator_male.png">
+      <h2>{{showContacts([comment.contact])}}</h2>
+      <p>{{comment.comment}}</p>
+    </div>    
   </ion-content>
+  
   <ion-footer-bar>
     <div class="bar bar-footer item-input-inset footer-item-input-insert">
       <label class="item-input-wrapper">

@@ -76,6 +76,16 @@ angular.module('popick', ['ionic', 'popick.controllers', 'popick.services'])
       templateUrl: "templates/menu.html",
       controller: 'AppCtrl'
     })
+
+    .state('app.login', {
+      url: "/login",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/login.html",
+          controller: 'AppCtrl'
+        }
+      }
+    })
     
     .state('app.home', {
       url: "/home",
@@ -107,5 +117,5 @@ angular.module('popick', ['ionic', 'popick.controllers', 'popick.services'])
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/app/login');
 });

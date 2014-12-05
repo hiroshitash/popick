@@ -1,10 +1,8 @@
-<div class="modal">
-  <ion-header-bar>
-    <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
-    </div>
-  </ion-header-bar>
+<ion-view title="Popick Login">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="closeLogin()">Close</button>
+  </ion-nav-buttons>
+
   <ion-content>
     <form ng-submit="doLogin()">
       <div class="list">
@@ -22,5 +20,5 @@
       </div>
     </form>
   </ion-content>
-</div>
+</ion-view>
 
